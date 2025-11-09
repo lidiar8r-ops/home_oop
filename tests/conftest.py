@@ -18,7 +18,8 @@ def protuct_two():
 def category_one(protuct_one, protuct_two):
     return Category(
         name="Смартфоны",
-        description="Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        description="Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для "
+                    "удобства жизни",
         products=[protuct_one, protuct_two],
     )
 
@@ -27,6 +28,7 @@ def category_one(protuct_one, protuct_two):
 def category_two():
     return Category(
         name="Телевизоры",
-        description="Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
-        products=Product[protuct_two]
+        description="Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и "
+                    "помощником",
+        products=Product[protuct_two],
     )

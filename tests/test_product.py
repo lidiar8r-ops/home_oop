@@ -1,7 +1,3 @@
-import pytest
-
-from src.product import Product
-
 
 def test_product(protuct_one):
     assert protuct_one.name == "Samsung Galaxy S23 Ultra"

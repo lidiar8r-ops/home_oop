@@ -15,12 +15,12 @@ class Product:
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """Создаёт экземпляр товара.
-               Args:
-                   name (str): Название товара. Должно быть непустым.
-                   description (str): Описание товара.
-                   price (float): Цена за единицу. Должно быть ≥0.
-                   quantity (int): Количество на складе. Должно быть ≥0
-               """
+        Args:
+            name (str): Название товара. Должно быть непустым.
+            description (str): Описание товара.
+            price (float): Цена за единицу. Должно быть ≥0.
+            quantity (int): Количество на складе. Должно быть ≥0
+        """
         self.name = name
         self.description = description
         self.price = price
