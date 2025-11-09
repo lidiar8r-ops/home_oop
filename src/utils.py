@@ -1,3 +1,10 @@
+import json
+import os
+from typing import List
+
+from src.category import Category
+from src.product import Product
+
 
 def read_products_from_json(file_path: str) -> List[Category]:
     """
@@ -32,7 +39,6 @@ def read_products_from_json(file_path: str) -> List[Category]:
     if not os.access(file_path, os.R_OK):
         raise PermissionError(f"Нет прав на чтение файла: {file_path}")
 
-
     try:
         with open(file_path, "r", encoding="utf-8") as json_file:
             json_data = json.load(json_file)
@@ -48,7 +54,6 @@ def read_products_from_json(file_path: str) -> List[Category]:
                     raise KeyError(f"Отсутствует ключ 'products' в категории: {category}")
                 if "name" not in category:
                     raise KeyError(f"Отсутствует ключ 'name' в категории: {category}")
-
 
                 products = []
                 for product in category["products"]:
@@ -82,4 +87,3 @@ if __name__ == "__main__":
     first_product = products_in_category[0]
     print(f"Первый продукт: {first_product.name}")
     print(f"Описание: {first_product.description}")
-
