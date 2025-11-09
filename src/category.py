@@ -2,20 +2,46 @@ from src.product import Product
 
 
 class Category:
-    # название
-    name: str
-    # описание
-    description: str
-    #список товаров категории
-    products : List[Product]
-    count_categories: int
-    count_categories = 0
-    count_products: int
-    count_products = 0
+    """
+    Представляет категорию товаров .
+    Класс отслеживает:
+    - название и описание категории;
+    - список входящих в неё товаров (объектов Product);
+    - общее количество созданных категорий (статический счётчик);
+    - общее количество товаров во всех категориях (статический счётчик).
+    Атрибуты:
+        name (str): Название категории (например, «Смартфоны»).
+        description (str): Подробное описание категории.
+        products (list[Product]): Список товаров, относящихся к категории.
+        Category_count (int): Статический счётчик — общее число созданных категорий.
+            Инициализируется 0, увеличивается на 1 при создании каждого экземпляра.
+        product_count (int): Статический счётчик — суммарное количество товаров
+            во всех категориях. Увеличивается на длину списка `products` при создании
+            экземпляра.
+    """
 
-    def __init__(self, name, description, products):
+    name: str
+    description: str
+    products: list[Product]
+    Category_count: int = 0
+    product_count: int = 0
+
+    def __init__(self, name: str, description: str, products: list[Product] = None ) -> None:
+        """
+        Инициализирует категорию с заданным названием, описанием и списком товаров.
+        При создании экземпляра:
+        - увеличивает статический счётчик `Category_count` на 1;
+        - увеличивает статический счётчик `product_count` на количество товаров в `products`.
+        Args:
+            name (str): Название категории. Должно быть непустой строкой.
+            description (str): Описание категории.
+            products (list[Product]): Список объектов Product, входящих в категорию.
+                Может быть пустым списком.
+        """
         self.name = name
         self.description = description
-        self.products = products
-        Category.count_categories += 1
-        Сategory.count_products += len(products)
+        self.products = products if products is not None else []
+
+        # Обновляем статические счётчики
+        Category.Category_count += 1
+        Category.product_count += len(products)
