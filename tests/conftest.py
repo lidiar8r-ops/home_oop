@@ -1,7 +1,6 @@
 import pytest
-from srs.product import Product
-from srs.category import Category
-
+from src.product import Product
+from src.category import Category
 
 
 @pytest.fixture()
@@ -16,11 +15,17 @@ def protuct_two():
 
 @pytest.fixture()
 def category_one():
-    return Category("Смартфоны",
-                         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-                         [product1, product2, product3])
+    return Category(
+        name="Смартфоны",
+        description="Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        products=Product[protuct_one, protuct_two],
+    )
+
+
 @pytest.fixture()
 def category_two():
-    return Category("Телевизоры",
-                         "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
-                         [product4])
+    return Category(
+        name="Телевизоры",
+        description="Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
+        products=Product[protuct_two]
+    )

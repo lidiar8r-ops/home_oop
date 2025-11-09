@@ -26,7 +26,7 @@ class Category:
     Category_count: int = 0
     product_count: int = 0
 
-    def __init__(self, name: str, description: str, products: list[Product] = None ) -> None:
+    def __init__(self, name: str, description: str, products: list[Product] = None) -> None:
         """
         Инициализирует категорию с заданным названием, описанием и списком товаров.
         При создании экземпляра:
