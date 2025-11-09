@@ -15,11 +15,11 @@ def protuct_two():
 
 
 @pytest.fixture()
-def category_one():
+def category_one(protuct_one, protuct_two):
     return Category(
         name="Смартфоны",
         description="Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-        products=Product[protuct_one, protuct_two],
+        products=[protuct_one, protuct_two],
     )
 
 

@@ -23,7 +23,7 @@ class Category:
     name: str
     description: str
     products: list[Product]
-    Category_count: int = 0
+    category_count: int = 0
     product_count: int = 0
 
     def __init__(self, name: str, description: str, products: list[Product] = None) -> None:
@@ -43,5 +43,5 @@ class Category:
         self.products = products if products is not None else []
 
         # Обновляем статические счётчики
-        Category.Category_count += 1
+        Category.category_count += 1
         Category.product_count += len(products)
