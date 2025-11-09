@@ -1,7 +1,6 @@
 class Product:
     """
     Представляет товар в ассортименте.
-
     Атрибуты:
         name (str): Название товара (например, «Смартфон Xiaomi 13»).
         description (str): Подробное описание товара.
@@ -15,6 +14,13 @@ class Product:
     quantity: int
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
+        """Создаёт экземпляр товара.
+               Args:
+                   name (str): Название товара. Должно быть непустым.
+                   description (str): Описание товара.
+                   price (float): Цена за единицу. Должно быть ≥0.
+                   quantity (int): Количество на складе. Должно быть ≥0
+               """
         self.name = name
         self.description = description
         self.price = price
