@@ -30,7 +30,7 @@
 Код покрыт тестами Coverage report: 100%
 
 HTML-отчёт, который показывает, какие строки кода были покрыты тестами, а какие нет в 
-[(htmlcov/index.html)](git@github.com:lidiar8r-ops/home_oop.git/htmlcov/index.html)
+[(htmlcov/index.html)](https://github.com/lidiar8r-ops/home_oop/blob/feature/homework_14_1/htmlcov/index.html)
 
 Для запуска тестов воспользуйтесь командой  ```poetry```
 
@@ -56,31 +56,32 @@ HTML-отчёт, который показывает, какие строки к
         product_count (int): Статический счётчик — суммарное количество товаров 
             во всех категориях. Увеличивается на длину списка `products` при создании
             экземпляра.
-
-    Примеры:
-        >>> phone = Product("iPhone 15", "Смартфон Apple", 99999.99, 10)
-        >>> laptop = Product("MacBook Air", "Ноутбук Apple", 149999.99, 5)
-        >>> electronics = Category("Электроника", "Гаджеты и компьютеры", [phone, laptop])
-        >>> electronics.name
-        'Электроника'
-        >>> len(electronics.products)
-        2
-        >>> Category.category_count
-        1
-        >>> Category.product_count
-        2    
 ```
 
 * Product
+
 ```
     Представляет товар в ассортименте.
-
     Атрибуты:
         name (str): Название товара (например, «Смартфон Xiaomi 13»).
         description (str): Подробное описание товара.
         price (float): Цена за единицу в рублях (должно быть ≥ 0).
         quantity (int): Количество единиц на складе (должно быть ≥ 0).
 ```
+
+**Созадан модуль utils.py** , в котором создана функция read_products_from_json
+```    
+    Читает JSON‑файл с данными о категориях и товарах, создаёт объекты Category и Product.
+    Выполняет валидацию входных данных и обрабатывает возможные ошибки.
+    Args:
+        file_path (str): Полный путь к JSON‑файлу с данными о категориях и продуктах.
+    Returns:
+        List[Category]: Список объектов Category, каждый из которых содержит:
+            - название, описание категории;
+            - список объектов Product (товары).
+```
+
+**Добавлено логирование модуль app_logger.py** 
 
 ## Цель разработки: 
 
