@@ -1,12 +1,16 @@
 import logging
 import os
+import shutil
 from unittest.mock import patch
+
+import pytest
 
 from src.app_logger import get_file_handler, get_logger, get_stream_handler, S_LOG_FORMAT
 
-from src.config import PARENT_DIR, LOG_LEVEL_STREAM, LOG_LEVEL
+from src.config import PARENT_DIR, LOG_LEVEL_STREAM, LOG_LEVEL, TEMP_DIR
 
-path_file = os.path.join(PARENT_DIR, "tmp")
+path_file = TEMP_DIR
+
 try:
     os.mkdir(path_file)
     print(f"Директория '{path_file}' создана успешно.")
@@ -16,8 +20,17 @@ except FileExistsError:
 # # Фикстура для удаления созданных лог-файлов после теста
 # @pytest.fixture(autouse=True)
 # def cleanup_logs():
-#     yield
-#     shutil.rmtree(path_file, ignore_errors=True)
+#     """
+#     Фикстура для удаления созданных лог-файлов после теста.
+#     Автоматически применяется ко всем тестам (autouse=True).
+#     """
+#     yield  # Здесь выполняются тесты
+#
+#     # Путь к директории с логами (настройте под свою структуру)
+#
+#     if os.path.exists(TEMP_DIR):
+#         shutil.rmtree(TEMP_DIR, ignore_errors=True)
+#         print(f"Очищено: {TEMP_DIR}")
 
 
 def test_get_file_handler():
@@ -25,7 +38,6 @@ def test_get_file_handler():
     assert isinstance(handler, logging.FileHandler)
     assert handler.level == LOG_LEVEL
     assert handler.formatter._fmt == S_LOG_FORMAT
-
 
 def test_get_stream_handler():
     handler = get_stream_handler()
