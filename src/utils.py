@@ -5,71 +5,65 @@ from typing import List
 from src.category import Category
 from src.product import Product
 
+from src.app_logger import get_logger
+
+
+logger = app_logger.get_logger("utils.log")
+
 
 def read_products_from_json(file_path: str) -> List[Category]:
     """
     Читает JSON‑файл с данными о категориях и товарах, создаёт объекты Category и Product.
-
     Выполняет валидацию входных данных и обрабатывает возможные ошибки.
-
     Args:
         file_path (str): Полный путь к JSON‑файлу с данными о категориях и продуктах.
-
-
     Returns:
         List[Category]: Список объектов Category, каждый из которых содержит:
             - название, описание категории;
-            - список объектов Product (товары в категории).
-
-    Raises:
-        FileNotFoundError: Если файл по указанному пути не найден.
-        PermissionError: Если нет прав на чтение файла.
-        json.JSONDecodeError: Если содержимое файла не является валидным JSON.
-        KeyError: Если в JSON отсутствует ожидаемый ключ (например, "products").
-        TypeError: Если данные в JSON не соответствуют ожидаемым типам для создания объектов Product/Category.
-        ValueError: Если файл пуст или данные некорректны.
-
-
+            - список объектов Product (товары).
     """
     # Проверка существования файла
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Файл не найден: {file_path}")
-
-    # Проверка прав на чтение
-    if not os.access(file_path, os.R_OK):
-        raise PermissionError(f"Нет прав на чтение файла: {file_path}")
+        logger.error(f"Файл не найден: {file_path}")
+        return []
 
     try:
         with open(file_path, "r", encoding="utf-8") as json_file:
             json_data = json.load(json_file)
+            logger.info(f"Начало чтения файла {file_path}")
 
             # Проверка на пустоту
             if not json_data:
-                raise ValueError("JSON‑файл пуст")
+                logger.error("JSON‑файл пуст")
+                return []
 
             categories = []
             for category in json_data:
                 # Проверка наличия обязательных ключей в категории
                 if "products" not in category:
-                    raise KeyError(f"Отсутствует ключ 'products' в категории: {category}")
+                    logger.error(f"Отсутствует ключ 'products' в категории: {category}")
+                    return []
                 if "name" not in category:
-                    raise KeyError(f"Отсутствует ключ 'name' в категории: {category}")
+                    logger.error(f"Отсутствует ключ 'name' в категории: {category}")
+                    return []
 
                 products = []
                 for product in category["products"]:
                     # Проверка наличия обязательных полей в продукте
                     if "name" not in product:
-                        raise KeyError(f"Отсутствует ключ 'name' в продукте: {product}")
+                        logger.error(f"Отсутствует ключ 'name' в продукте: {product}")
+                        return []
                     products.append(Product(**product))
 
                 category["products"] = products
                 categories.append(Category(**category))
 
+        logger.info(f"Окончание чтения JSON-файла {file_path}")
         return categories
 
     except json.JSONDecodeError as e:
-        raise json.JSONDecodeError(f"Ошибка парсинга JSON: {e}", e.doc, e.pos)
-
+        logger.error(f"Ошибка парсинга JSON: {e}", e.doc, e.pos)
+        return []
 
 if __name__ == "__main__":
     path_file = os.path.abspath(os.path.join("..", "data\\products.json"))
