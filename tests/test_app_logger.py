@@ -1,13 +1,9 @@
 import logging
 import os
-import shutil
 from unittest.mock import patch
 
-import pytest
-
-from src.app_logger import get_file_handler, get_logger, get_stream_handler, S_LOG_FORMAT
-
-from src.config import PARENT_DIR, LOG_LEVEL_STREAM, LOG_LEVEL, TEMP_DIR
+from src.app_logger import S_LOG_FORMAT, get_file_handler, get_logger, get_stream_handler
+from src.config import LOG_LEVEL, LOG_LEVEL_STREAM, TEMP_DIR
 
 path_file = TEMP_DIR
 
@@ -38,6 +34,7 @@ def test_get_file_handler():
     assert isinstance(handler, logging.FileHandler)
     assert handler.level == LOG_LEVEL
     assert handler.formatter._fmt == S_LOG_FORMAT
+
 
 def test_get_stream_handler():
     handler = get_stream_handler()

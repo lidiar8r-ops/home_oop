@@ -6,7 +6,6 @@ from src import app_logger
 from src.category import Category
 from src.product import Product
 
-
 logger = app_logger.get_logger("utils.log")
 
 

@@ -1,11 +1,6 @@
 import json
-from unittest.mock import patch, mock_open, MagicMock
-from typing import List
+from unittest.mock import MagicMock, mock_open, patch
 
-import pytest
-
-from src.category import Category
-from src.product import Product
 from src.utils import read_products_from_json
 
 
@@ -28,7 +23,8 @@ def test_read_products_from_json(data_json):
         assert category.name == "Смартфоны"
         assert (
             category.description
-            == "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни"
+            == "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для "
+            "удобства жизни"
         )
         assert len(category.products) == 1
 
@@ -40,7 +36,6 @@ def test_read_products_from_json(data_json):
 
         # Проверяем, что open был вызван с правильными аргументами
         mock_file.assert_called_once_with("test.json", "r", encoding="utf-8")
-
 
 
 def test_file_not_found():

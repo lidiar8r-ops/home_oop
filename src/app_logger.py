@@ -2,7 +2,7 @@ import logging
 import os
 from logging import Logger
 
-from src.config import LOG_DIR, S_LOG_FORMAT, LOG_LEVEL, LOG_LEVEL_STREAM
+from src.config import LOG_DIR, LOG_LEVEL, LOG_LEVEL_STREAM, S_LOG_FORMAT
 
 
 def get_file_handler(name: str) -> logging.FileHandler:

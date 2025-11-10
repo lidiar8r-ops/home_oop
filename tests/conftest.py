@@ -49,7 +49,8 @@ def VALID_DATA():
 def data_json():
     return {
         "name": "Смартфоны",
-        "description": "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни",
+        "description": "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для "
+        "удобства жизни",
         "products": [
             {
                 "name": "Samsung Galaxy C23 Ultra",
@@ -65,9 +66,11 @@ def data_json():
 def missing_products():
     return [{"name": "Без продуктов"}]
 
+
 @pytest.fixture()
 def missing_name_cat():
     return [{"products": []}]
+
 
 @pytest.fixture()
 def missing_name_prod():
