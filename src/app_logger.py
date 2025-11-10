@@ -2,7 +2,7 @@ import logging
 import os
 from logging import Logger
 
-from src.config import LOG_DIR, S_LOG_FORMAT
+from src.config import LOG_DIR, S_LOG_FORMAT, LOG_LEVEL, LOG_LEVEL_STREAM
 
 
 def get_file_handler(name: str) -> logging.FileHandler:
@@ -12,7 +12,7 @@ def get_file_handler(name: str) -> logging.FileHandler:
     :return: экземпляр FileHandler
     """
     file_handler = logging.FileHandler(os.path.join(LOG_DIR, name), mode="w", encoding="utf-8")
-    file_handler.setLevel(logging.INFO)
+    file_handler.setLevel(LOG_LEVEL)
     file_handler.setFormatter(logging.Formatter(S_LOG_FORMAT))
     return file_handler
 
@@ -23,7 +23,7 @@ def get_stream_handler() -> logging.StreamHandler:
     :return: экземпляр StreamHandler
     """
     stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(logging.CRITICAL)
+    stream_handler.setLevel(LOG_LEVEL_STREAM)
     stream_handler.setFormatter(logging.Formatter(S_LOG_FORMAT))
     return stream_handler
 
@@ -35,7 +35,7 @@ def get_logger(name: str) -> Logger:
     :return: настроеннный экземпляр Logger
     """
     logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
+    logger.setLevel(LOG_LEVEL)
 
     # Добавляем обработчики
     logger.addHandler(get_file_handler(name))

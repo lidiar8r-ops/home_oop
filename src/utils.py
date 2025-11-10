@@ -2,10 +2,9 @@ import json
 import os
 from typing import List
 
+from src import app_logger
 from src.category import Category
 from src.product import Product
-
-from src.app_logger import get_logger
 
 
 logger = app_logger.get_logger("utils.log")

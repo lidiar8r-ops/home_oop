@@ -23,7 +23,7 @@ except FileExistsError:
 def test_get_file_handler():
     handler = get_file_handler(os.path.join(path_file, "test.log"))
     assert isinstance(handler, logging.FileHandler)
-    assert handler.level == logging.INFO
+    assert handler.level == logging.DEBUG
     assert handler.formatter._fmt == S_LOG_FORMAT
 
 
