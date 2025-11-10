@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 from src.app_logger import get_file_handler, get_logger, get_stream_handler, S_LOG_FORMAT
 
-from src.config import PARENT_DIR
+from src.config import PARENT_DIR, LOG_LEVEL_STREAM, LOG_LEVEL
 
 path_file = os.path.join(PARENT_DIR, "tmp")
 try:
@@ -23,14 +23,14 @@ except FileExistsError:
 def test_get_file_handler():
     handler = get_file_handler(os.path.join(path_file, "test.log"))
     assert isinstance(handler, logging.FileHandler)
-    assert handler.level == logging.DEBUG
+    assert handler.level == LOG_LEVEL
     assert handler.formatter._fmt == S_LOG_FORMAT
 
 
 def test_get_stream_handler():
     handler = get_stream_handler()
     assert isinstance(handler, logging.StreamHandler)
-    assert handler.level == logging.CRITICAL
+    assert handler.level == LOG_LEVEL_STREAM
     assert handler.formatter._fmt == S_LOG_FORMAT
 
 
@@ -38,7 +38,7 @@ def test_get_logger():
     log_path = os.path.join(path_file, "test.log")
     logger = get_logger(log_path)
     assert isinstance(logger, logging.Logger)
-    assert logger.level == logging.INFO
+    assert logger.level == LOG_LEVEL
     handlers = logger.handlers
     assert any(isinstance(h, logging.FileHandler) for h in handlers)
 

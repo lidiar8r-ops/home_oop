@@ -32,3 +32,43 @@ def category_two():
         "помощником",
         products=Product[protuct_two],
     )
+
+
+@pytest.fixture()
+def VALID_DATA():
+    return [
+        {
+            "name": "Смартфоны",
+            "description": "Мобильные устройства",
+            "products": [{"name": "Galaxy S23", "price": 79999.99, "quantity": 3}],
+        }
+    ]
+
+
+@pytest.fixture()
+def data_json():
+    return {
+        "name": "Смартфоны",
+        "description": "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни",
+        "products": [
+            {
+                "name": "Samsung Galaxy C23 Ultra",
+                "description": "256GB, Серый цвет, 200MP камера",
+                "price": 180000.0,
+                "quantity": 5,
+            }
+        ],
+    }
+
+
+@pytest.fixture()
+def missing_products():
+    return [{"name": "Без продуктов"}]
+
+@pytest.fixture()
+def missing_name_cat():
+    return [{"products": []}]
+
+@pytest.fixture()
+def missing_name_prod():
+    return [{"name": "Электроника", "products": [{"price": 1000}]}]  # нет 'name' у продукта
