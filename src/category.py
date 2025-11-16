@@ -40,8 +40,8 @@ class Category:
         """
         self.name = name
         self.description = description
+        self.__products: list [Product] = []
         self.__products = products if products is not None else []
-
         # Обновляем статические счётчики
         Category.category_count += 1
         Category.product_count += len(products)
