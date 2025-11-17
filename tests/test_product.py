@@ -1,11 +1,11 @@
 from src.product import Product
 
 
-def test_product(protuct_one):
-    assert protuct_one.name == "Samsung Galaxy S23 Ultra"
-    assert protuct_one.description == "256GB, Серый цвет, 200MP камера"
-    assert protuct_one.price == 180000.0
-    assert protuct_one.quantity == 5
+def test_product(product_one):
+    assert product_one.name == "Samsung Galaxy S23 Ultra"
+    assert product_one.description == "256GB, Серый цвет, 200MP камера"
+    assert product_one.price == 180000.0
+    assert product_one.quantity == 5
 
 
 def test_product_new_product():
@@ -17,12 +17,12 @@ def test_product_new_product():
     assert new_product.price == 180000.0
     assert new_product.quantity == 5
 
-def test_product_price_update(capsys, protuct_one):
-    protuct_one.price = 0
+def test_product_price_update(capsys, product_one):
+    product_one.price = 0
     message = capsys.readouterr()
     assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
 
-    protuct_one.price = -100
+    product_one.price = -100
     message = capsys.readouterr()
     assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
     assert product_one.price == 180000.0
