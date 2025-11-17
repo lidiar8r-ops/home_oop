@@ -89,7 +89,7 @@ class Product:
             return new_item
 
         # Если товар найден — объединяем данные
-        print(f"Товар '{product['name']}' уже существует. Объединяем данные...")
+        print(f"Товар {product['name']} уже существует. Объединяем данные...")
 
         # Складываем количество
         find_product.quantity += product["quantity"]

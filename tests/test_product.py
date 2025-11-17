@@ -1,3 +1,6 @@
+import pytest
+from unittest.mock import patch
+
 from src.product import Product
 
 
@@ -17,7 +20,17 @@ def test_product_new_product():
     assert new_product.price == 180000.0
     assert new_product.quantity == 5
 
-def test_product_price_update(capsys, product_one):
+def test_product_price(capsys, product_one):
+    Product("55\" QLED 4K", "Фоновая подсветка", -133000.0, 3)
+    message = capsys.readouterr()
+    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+
+    Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": -10,
+         "quantity": 5})
+    message = capsys.readouterr()
+    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+
     product_one.price = 0
     message = capsys.readouterr()
     assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
@@ -28,3 +41,41 @@ def test_product_price_update(capsys, product_one):
     assert product_one.price == 180000.0
 
     product_one.price = 180001
+    assert product_one.price == 180001
+
+
+def test_product_quantity(capsys):
+    Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": -5})
+    message = capsys.readouterr()
+    assert message.out.strip() == "Количество товара не должно быть отрицательным"
+
+
+def test_product_addition(capsys, category_one):
+    Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 190000.0,
+         "quantity": 5}, category_one.get_product_list())
+    message = capsys.readouterr()
+    assert (message.out.strip() == "Товар Samsung Galaxy S23 Ultra уже существует. Объединяем данные...\n"
+                                   "Цена обновлена до 190000.0 руб.")
+
+
+@patch('builtins.input', return_value='y')
+def test_price_decrease_accepted(mock_input, capsys, product_two):
+    """Тест: понижение цены, пользователь ввёл 'y' → цена меняется."""
+    # Пытаемся понизить цену с 210_000 до 200_000
+    product_two.price = product_two.price - 100
+
+
+    # Захватываем вывод ОДИН раз
+    captured = capsys.readouterr()
+
+    # Проверяем, что было сообщение о понижении
+    assert "Цена товара понижается" in captured.out
+    # Проверяем, что запросили подтверждение (гибкая проверка)
+    assert "При согласии понизить цену введите y" in captured.out
+    # Проверяем, что input был вызван
+    assert mock_input.called
+    # Проверяем, что цена обновилась
+    assert product_two.price == 200000.0
