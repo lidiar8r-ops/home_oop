@@ -15,6 +15,11 @@ def protuct_two():
 
 
 @pytest.fixture()
+def protuct_three():
+    return Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+
+
+@pytest.fixture()
 def category_one(protuct_one, protuct_two):
     return Category(
         name="Смартфоны",
