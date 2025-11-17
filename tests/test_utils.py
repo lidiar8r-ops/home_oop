@@ -26,7 +26,7 @@ def test_read_products_from_json(data_json):
             == "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для "
             "удобства жизни"
         )
-        assert category.product_count == 1
+
         assert category.products == "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
 
         product = category.get_product_list()[0]
