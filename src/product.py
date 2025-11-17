@@ -25,8 +25,9 @@ class Product:
         self.name = name
         self.description = description
         if  price < 0 :
-            price = 0
+            # price = 0
             print("Цена не должна быть нулевая или отрицательная")
+            return
         self.__price = price
         self.quantity = quantity
 
@@ -40,6 +41,7 @@ class Product:
         """Сеттер для price: проверяет, что цена ≥ 0."""
         if price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
+            return
         elif price <= self.__price:
             if input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?") == 'y':
                 self.__price = price
@@ -62,6 +64,7 @@ class Product:
         if product.get("price") is not None and product["price"] < 0:
             product["price"] = 0
             print("Цена не должна быть нулевая или отрицательная")
+            return
 
         if product.get("quantity") is not None and product["quantity"] < 0:
             product["quantity"] = 0

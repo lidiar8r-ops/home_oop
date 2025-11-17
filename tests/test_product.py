@@ -16,4 +16,15 @@ def test_product_new_product():
     assert new_product.description == "256GB, Серый цвет, 200MP камера"
     assert new_product.price == 180000.0
     assert new_product.quantity == 5
-    assert new_product.price == 180000.0
+
+def test_product_price_update(capsys, protuct_one):
+    protuct_one.price = 0
+    message = capsys.readouterr()
+    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+
+    protuct_one.price = -100
+    message = capsys.readouterr()
+    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    assert product_one.price == 180000.0
+
+    product_one.price = 180001

@@ -1,4 +1,4 @@
-def test_category(category_one, protuct_two, protuct_three):
+def test_category(category_one, product_two, product_three):
     assert category_one.name == "Смартфоны"
     assert (
         category_one.description
@@ -8,10 +8,10 @@ def test_category(category_one, protuct_two, protuct_three):
     assert category_one.category_count == 1
     assert category_one.product_count == 2
 
-    category_one.add_product(protuct_two)
+    category_one.add_product(product_two)
     assert category_one.product_count == 2
 
-    category_one.add_product(protuct_three)
+    category_one.add_product(product_three)
     assert category_one.product_count == 3
 
 
