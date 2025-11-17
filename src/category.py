@@ -1,3 +1,5 @@
+from typing import List, Dict, Any
+
 from src.product import Product
 
 
@@ -40,7 +42,7 @@ class Category:
         """
         self.name = name
         self.description = description
-        self.__products: list [Product] = []
+        self.__products: list[Product] = []
         self.__products: List[Product] = products.copy() if products else []
         # Обновляем статические счётчики
         Category.category_count += 1
@@ -48,14 +50,13 @@ class Category:
 
     @property
     def products(self) -> str:
-        """ геттер, который будет выводить список товаров в виде строк в формате:
-            Название продукта, 80 руб. Остаток: 15 шт.
+        """геттер, который будет выводить список товаров в виде строк в формате:
+        Название продукта, 80 руб. Остаток: 15 шт.
         """
         str_products = ""
         for product in self.__products:
             str_products += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-        return  str_products # Название продукта, 80 руб. Остаток: 15 шт.
-
+        return str_products  # Название продукта, 80 руб. Остаток: 15 шт.
 
     def add_product(self, product: list) -> None:
         """
@@ -68,17 +69,16 @@ class Category:
             "name": product.name,
             "description": product.description,
             "price": product.price,
-            "quantity": product.quantity
+            "quantity": product.quantity,
         }
 
         # Используем new_product для возможного объединения с существующим товаром
-        added_product = Product.new_product(product_data, self.__products)
+        Product.new_product(product_data, self.__products)
 
         # Если товар новый (не был в списке), увеличиваем счётчик
         # if product not in self.__products:
-            # self.__products.append(added_product)
+        # self.__products.append(added_product)
         Category.product_count = len(self.__products)
-
 
     # @products.setter
     # def products(self, products: Product) -> None:
@@ -87,4 +87,3 @@ class Category:
     def get_product_list(self) -> list[Product]:
         """Возвращает список объектов Product для внутренней работы."""
         return self.__products
-

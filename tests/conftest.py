@@ -16,7 +16,7 @@ def product_two():
 
 @pytest.fixture()
 def product_three():
-    return Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+    return Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
 
 
 @pytest.fixture()

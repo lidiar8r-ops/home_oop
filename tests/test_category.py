@@ -13,5 +13,3 @@ def test_category(category_one, product_two, product_three):
 
     category_one.add_product(product_three)
     assert category_one.product_count == 3
-
-

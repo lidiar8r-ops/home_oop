@@ -1,4 +1,3 @@
-
 class Product:
     """
     Представляет товар в ассортименте.
@@ -11,7 +10,6 @@ class Product:
 
     name: str
     description: str
-    price: float
     quantity: int
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
@@ -24,7 +22,7 @@ class Product:
         """
         self.name = name
         self.description = description
-        if  price < 0 :
+        if price < 0:
             # price = 0
             print("Цена не должна быть нулевая или отрицательная")
             return
@@ -43,7 +41,10 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
             return
         elif price <= self.__price:
-            if input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?") == 'y':
+            if (
+                input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
+                == "y"
+            ):
                 self.__price = price
         else:
             self.__price = price
