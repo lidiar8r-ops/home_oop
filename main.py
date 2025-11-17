@@ -11,12 +11,26 @@ if __name__ == "__main__":
         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
         [product1, product2, product3]
     )
-
+    print(category1.product_count, "!!!")
     print(category1.products)
+
     product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
     category1.add_product(product4)
     print(category1.products)
-    print(category1.product_count)
+    print(category1.product_count,"!!!")
+
+    product5 = Product("55\" QLED 4K", "Фоновая подсветка", 133000.0, 8)
+    category1.add_product(product5)
+    print(category1.products)
+    print(category1.product_count,"!!!")
+    print("==="*5)
+
+    product6 = Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": 5}, category1.get_product_list())
+    print(category1.products)
+    print(category1.product_count, " продукт 6")
+    print("===" * 5)
 
     new_product = Product.new_product(
         {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,

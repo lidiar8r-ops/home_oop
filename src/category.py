@@ -56,6 +56,7 @@ class Category:
             str_products += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return  str_products # Название продукта, 80 руб. Остаток: 15 шт.
 
+
     def add_product(self, product: list) -> None:
         """
         Добавляет товар в категорию.
@@ -74,11 +75,16 @@ class Category:
         added_product = Product.new_product(product_data, self.__products)
 
         # Если товар новый (не был в списке), увеличиваем счётчик
-        if added_product not in self.__products:
-            self.__products.append(added_product)
-            Category.product_count += 1
+        # if product not in self.__products:
+            # self.__products.append(added_product)
+        Category.product_count = len(self.__products)
 
 
+    # @products.setter
+    # def products(self, products: Product) -> None:
+    #     self.__products = products
 
-
+    def get_product_list(self) -> list[Product]:
+        """Возвращает список объектов Product для внутренней работы."""
+        return self.__products
 
