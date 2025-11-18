@@ -64,19 +64,20 @@ def read_products_from_json(file_path: str) -> List[Category]:
         return []
 
 
-# if __name__ == "__main__":
-#     path_file = os.path.abspath(os.path.join("..", "data\\products.json"))
-#     result = read_products_from_json(path_file)
-#
-#     # Выводим первую категорию
-#     first_category = result[0]
-#     print(f"Категория: {first_category.name}")
-#
-#     # Выводим список продуктов в первой категории
-#     products_in_category = first_category.products
-#     print(f"Продукты в категории: {[p.name for p in products_in_category]}")
-#
-#     # Выводим первый продукт из первой категории
-#     first_product = products_in_category[0]
-#     print(f"Первый продукт: {first_product.name}")
-#     print(f"Описание: {first_product.description}")
+if __name__ == "__main__":
+    path_file = os.path.abspath(os.path.join("..", "data\\products.json"))
+    result = read_products_from_json(path_file)
+
+    # Выводим первую категорию
+    first_category = result[0]
+    print(f"Категория: {first_category.name}")
+
+    # Выводим список продуктов в первой категории
+    # products_in_category = first_category.products
+    # print(f"Продукты в категории: {[p.name for p in products_in_category]}")
+    print(first_category.products)
+
+    # Выводим первый продукт из первой категории
+    first_product = first_category.get_product_list()[0]
+    print(f"Первый продукт: {first_product.name}")
+    print(f"Описание: {first_product.description}")

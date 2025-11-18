@@ -42,8 +42,8 @@ class Product:
             return
         elif price <= self.__price:
             if (
-                input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
-                == "y"
+                    input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
+                    == "y"
             ):
                 self.__price = price
         else:
@@ -53,14 +53,15 @@ class Product:
     @classmethod
     def new_product(cls, product: dict, products_list: list = []) -> None:
         """
-        Если товар с таким же именем уже существует в списке, объединяет их:
-        - складывает количество на складе;
-        - выбирает максимальную из двух цен.
+       Создаёт новый продукт или объединяет с существующим по имени (
+            - складывает количество на складе;
+            - выбирает максимальную из двух цен)
 
-        :param product: словарь с данными продукта (обязательно: name, price, description, quantity)
+        :param product: словарь с данными продукта ( name, price, description, quantity)
         :param products_list: список существующих товаров для проверки дубликатов (опционально)
         :return: экземпляр cls ( Product)
         """
+
         # Валидация и коррекция данных
         if product.get("price") is not None and product["price"] < 0:
             product["price"] = 0
