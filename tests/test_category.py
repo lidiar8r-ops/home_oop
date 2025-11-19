@@ -1,9 +1,15 @@
-def test_category(category_one):
+def test_category(category_one, product_two, product_three):
     assert category_one.name == "Смартфоны"
     assert (
         category_one.description
         == "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни"
     )
-    assert len(category_one.products) == 2
+    assert len(category_one.products) == 95
     assert category_one.category_count == 1
     assert category_one.product_count == 2
+
+    category_one.add_product(product_two)
+    assert category_one.product_count == 2
+
+    category_one.add_product(product_three)
+    assert category_one.product_count == 3
