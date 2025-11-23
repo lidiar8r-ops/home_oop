@@ -30,7 +30,7 @@
 Код покрыт тестами Coverage report: 100%
 
 HTML-отчёт, который показывает, какие строки кода были покрыты тестами, а какие нет в 
-[(htmlcov/index.html)](https://github.com/lidiar8r-ops/home_oop/blob/Feature/homework-14-2/htmlcov/index.html)
+[(htmlcov/index.html)](https://github.com/lidiar8r-ops/home_oop/blob/feature/homework-14-3/htmlcov/index.html)
 
 Для запуска тестов воспользуйтесь командой  ```poetry```
 
