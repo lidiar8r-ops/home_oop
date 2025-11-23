@@ -101,7 +101,7 @@ class Category:
         return self.__products
 
 
-class ProductItarator:
+class ProductIterator:
     category: Category
 
     def __init__(self, category):
