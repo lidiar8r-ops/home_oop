@@ -1,5 +1,7 @@
 from typing import List, Dict, Any
 
+from unicodedata import category
+
 from src.product import Product
 
 
@@ -49,9 +51,7 @@ class Category:
         Category.product_count += len(products)
 
     def __str__(self):
-        count_products = 0
-        for product in self.__products:
-            count_products += product.quantity
+        count_products = sum(p.quantity for p in self.__products)
         return f"{self.name}, количество продуктов: {count_products} шт."
 
         # goods_count = 0
@@ -102,9 +102,7 @@ class Category:
 
 
 class ProductIterator:
-    category: Category
-
-    def __init__(self, category):
+    def __init__(self, category: Category):
         self.category = category
         self.index = 0
 
@@ -112,10 +110,10 @@ class ProductIterator:
         self.index = 0
         return self
 
-    def __next__(self):
-        if self.index + 1 < len(self.category.products[self.index]):
-            product = self.category.products[self.index]
-            self.index += 1
-            return product
-        else:
+    def __next__(self) -> Product:
+        products = self.category.get_product_list()
+        if self.index >= len(products):
             raise StopIteration
+        product = products[self.index]
+        self.index += 1
+        return product

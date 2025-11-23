@@ -83,5 +83,5 @@ def missing_name_prod():
 
 
 @pytest.fixture()
-def product_iterator(product_one):
-    return ProductIterator(product_one)
+def product_iterator(category_one):
+    return ProductIterator(category_one)
