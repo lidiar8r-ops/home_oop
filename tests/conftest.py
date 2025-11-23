@@ -1,6 +1,6 @@
 import pytest
 
-from src.category import Category
+from src.category import Category, ProductIterator
 from src.product import Product
 
 
@@ -80,3 +80,8 @@ def missing_name_cat():
 @pytest.fixture()
 def missing_name_prod():
     return [{"name": "Электроника", "products": [{"price": 1000}]}]  # нет 'name' у продукта
+
+
+@pytest.fixture()
+def product_iterator(category_one):
+    return ProductIterator(category_one)
