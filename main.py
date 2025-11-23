@@ -1,4 +1,4 @@
-from src.category import Category
+from src.category import Category, ProductItarator
 from src.product import Product
 
 if __name__ == '__main__':
@@ -25,3 +25,14 @@ if __name__ == '__main__':
     print(product1 + product2)
     print(product1 + product3)
     print(product2 + product3)
+    print()
+
+    iterator = ProductItarator(category1)
+
+    for products in iterator:
+        print(products)
+
+    print()
+
+    for product in iterator:
+        print(product)

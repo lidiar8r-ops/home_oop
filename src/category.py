@@ -113,8 +113,9 @@ class ProductItarator:
         return self
 
     def __next__(self):
-        if self.index + 1 < len(self.category.products_in_list):
+        if self.index + 1 < len(self.category.products[self.index]):
+            product = self.category.products[self.index]
             self.index += 1
-            return self.category.products_in_list[self.index]
+            return product
         else:
             raise StopIteration
