@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class Product:
     """
     Представляет товар в ассортименте.
@@ -58,7 +61,7 @@ class Product:
         # return self.__price
 
     @classmethod
-    def new_product(cls, product: dict, products_list: list = []) -> "Product":
+    def new_product(cls, product: dict, products_list: list = []) -> Optional["Product"]:
         """
         Создаёт новый продукт или объединяет с существующим по имени (
              - складывает количество на складе;
@@ -73,7 +76,7 @@ class Product:
         if product.get("price") is not None and product["price"] < 0:
             product["price"] = 0
             print("Цена не должна быть нулевая или отрицательная")
-            return cls(**{})
+            return None
 
         if product.get("quantity") is not None and product["quantity"] < 0:
             product["quantity"] = 0
@@ -114,4 +117,3 @@ class Product:
             price=find_product.price,
             quantity=find_product.quantity,
         )
-
