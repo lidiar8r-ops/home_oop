@@ -48,15 +48,31 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
-    @property
-    def products(self) -> str:
-        """геттер, который будет выводить список товаров в виде строк в формате:
-        Название продукта, 80 руб. Остаток: 15 шт.
-        """
+    def __str__(self):
         str_products = ""
         for product in self.__products:
             str_products += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return str_products  # Название продукта, 80 руб. Остаток: 15 шт.
+
+        # goods_count = 0
+        # for product in self.__products:
+        #     goods_count += product.quantity
+        # return f"{self.name}, количество продуктов: {goods_count} шт."
+        #
+        # for product in self.__products:
+        #     str_products += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+        # return str_products  # Название продукта, 80 руб. Остаток: 15 шт.
+
+    @property
+    def products(self) -> str:
+        """геттер, который будет выводить список товаров в виде строк в формате:
+        Название продукта, 80 руб. Остаток: 15 шт.
+        # """
+        # str_products = ""
+        # for product in self.__products:
+        #     str_products += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+        # return str_products  # Название продукта, 80 руб. Остаток: 15 шт.
+        return str(self.__products)
 
     def add_product(self, product: list) -> None:
         """
