@@ -96,9 +96,6 @@ class Category:
         # self.__products.append(added_product)
         Category.product_count = len(self.__products)
 
-    # @products.setter
-    # def products(self, products: Product) -> None:
-    #     self.__products = products
 
     def get_product_list(self) -> list[Product]:
         """Возвращает список объектов Product для внутренней работы."""
