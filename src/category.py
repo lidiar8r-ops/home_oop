@@ -49,10 +49,10 @@ class Category:
         Category.product_count += len(products)
 
     def __str__(self):
-        str_products = ""
+        count_products = 0
         for product in self.__products:
-            str_products += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-        return str_products  # Название продукта, 80 руб. Остаток: 15 шт.
+            count_products += product.quantity
+        return f"{self.name}, количество продуктов: {count_products} шт."
 
         # goods_count = 0
         # for product in self.__products:
@@ -68,11 +68,10 @@ class Category:
         """геттер, который будет выводить список товаров в виде строк в формате:
         Название продукта, 80 руб. Остаток: 15 шт.
         # """
-        # str_products = ""
-        # for product in self.__products:
-        #     str_products += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-        # return str_products  # Название продукта, 80 руб. Остаток: 15 шт.
-        return str(self.__products)
+        str_products = ""
+        for product in self.__products:
+            str_products += str(product) + "\n"
+        return str_products
 
     def add_product(self, product: list) -> None:
         """
@@ -100,3 +99,22 @@ class Category:
     def get_product_list(self) -> list[Product]:
         """Возвращает список объектов Product для внутренней работы."""
         return self.__products
+
+
+class ProductItarator:
+    category: Category
+
+    def __init__(self, category):
+        self.category = category
+        self.index = 0
+
+    def __iter__(self):
+        self.index = 0
+        return self
+
+    def __next__(self):
+        if self.index + 1 < len(self.category.products_in_list):
+            self.index += 1
+            return self.category.products_in_list[self.index]
+        else:
+            raise StopIteration

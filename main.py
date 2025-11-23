@@ -9,6 +9,7 @@ if __name__ == '__main__':
     print(str(product1))
     print(str(product2))
     print(str(product3))
+    print()
 
     category1 = Category(
         "Смартфоны",
@@ -17,8 +18,9 @@ if __name__ == '__main__':
     )
 
     print(str(category1))
-
+    print()
     print(category1.products)
+    print()
 
     print(product1 + product2)
     print(product1 + product3)
