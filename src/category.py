@@ -1,6 +1,4 @@
-from typing import List, Dict, Any
-
-from unicodedata import category
+from typing import Any, Dict, Self
 
 from src.product import Product
 
@@ -26,7 +24,6 @@ class Category:
 
     name: str
     description: str
-    products: list[Product]
     category_count: int = 0
     product_count: int = 0
 
@@ -44,13 +41,12 @@ class Category:
         """
         self.name = name
         self.description = description
-        self.__products: list[Product] = []
-        self.__products: List[Product] = products.copy() if products else []
+        self.__products = products.copy() if products else []
         # Обновляем статические счётчики
         Category.category_count += 1
         Category.product_count += len(products)
 
-    def __str__(self):
+    def __str__(self) -> str:
         count_products = sum(p.quantity for p in self.__products)
         return f"{self.name}, количество продуктов: {count_products} шт."
 
@@ -67,13 +63,13 @@ class Category:
     def products(self) -> str:
         """геттер, который будет выводить список товаров в виде строк в формате:
         Название продукта, 80 руб. Остаток: 15 шт.
-        # """
+        #"""
         str_products = ""
         for product in self.__products:
             str_products += str(product) + "\n"
         return str_products
 
-    def add_product(self, product: list) -> None:
+    def add_product(self, product: Product) -> None:
         """
         Добавляет товар в категорию.
         Args:
@@ -95,7 +91,6 @@ class Category:
         # self.__products.append(added_product)
         Category.product_count = len(self.__products)
 
-
     def get_product_list(self) -> list[Product]:
         """Возвращает список объектов Product для внутренней работы."""
         return self.__products
@@ -106,7 +101,7 @@ class ProductIterator:
         self.category = category
         self.index = 0
 
-    def __iter__(self):
+    def __iter__(self) -> Self:
         self.index = 0
         return self
 

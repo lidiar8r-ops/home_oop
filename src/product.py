@@ -11,6 +11,7 @@ class Product:
     name: str
     description: str
     quantity: int
+    __price: float
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """Создаёт экземпляр товара.
@@ -29,14 +30,11 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     def __str__(self) -> str:
-        return  f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
-
-    def __add__(self, other):
+    def __add__(self, other: "Product") -> float:
         return self.__price * self.quantity + other.__price * other.quantity
-
 
     @property
     def price(self) -> float:
@@ -44,38 +42,38 @@ class Product:
         return self.__price
 
     @price.setter
-    def price(self, price):
+    def price(self, price: float) -> None:
         """Сеттер для price: проверяет, что цена ≥ 0."""
         if price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
             return
         elif price <= self.__price:
             if (
-                    input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
-                    == "y"
+                input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
+                == "y"
             ):
                 self.__price = price
         else:
             self.__price = price
-        return self.__price
+        # return self.__price
 
     @classmethod
-    def new_product(cls, product: dict, products_list: list = []) -> None:
+    def new_product(cls, product: dict, products_list: list = []) -> "Product":
         """
-       Создаёт новый продукт или объединяет с существующим по имени (
-            - складывает количество на складе;
-            - выбирает максимальную из двух цен)
+        Создаёт новый продукт или объединяет с существующим по имени (
+             - складывает количество на складе;
+             - выбирает максимальную из двух цен)
 
-        :param product: словарь с данными продукта ( name, price, description, quantity)
-        :param products_list: список существующих товаров для проверки дубликатов (опционально)
-        :return: экземпляр cls ( Product)
+         :param product: словарь с данными продукта ( name, price, description, quantity)
+         :param products_list: список существующих товаров для проверки дубликатов (опционально)
+         :return: экземпляр cls ( Product)
         """
 
         # Валидация и коррекция данных
         if product.get("price") is not None and product["price"] < 0:
             product["price"] = 0
             print("Цена не должна быть нулевая или отрицательная")
-            return
+            return cls(**{})
 
         if product.get("quantity") is not None and product["quantity"] < 0:
             product["quantity"] = 0
@@ -110,4 +108,10 @@ class Product:
             find_product.price = product["price"]
             print(f"Цена обновлена до {find_product.price} руб.")
 
-        return find_product
+        return cls(
+            name=find_product.name,
+            description=find_product.description,
+            price=find_product.price,
+            quantity=find_product.quantity,
+        )
+

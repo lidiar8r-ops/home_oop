@@ -1,7 +1,5 @@
 import pytest
 
-from src.category import ProductIterator
-
 
 def test_category(category_one, product_two, product_three):
     assert category_one.name == "Смартфоны"
@@ -22,6 +20,7 @@ def test_category(category_one, product_two, product_three):
 
 def test_category_str(category_one):
     assert str(category_one) == "Смартфоны, количество продуктов: 13 шт."
+
 
 def test_product_iterator(product_iterator):
     iter(product_iterator)

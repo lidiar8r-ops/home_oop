@@ -91,5 +91,6 @@ def test_price_decrease_accepted(capsys, product_two):
     product_two.price = 80000.0
     assert product_two.price == 80000.0
 
-def test_products_add(product_one,product_two):
+
+def test_products_add(product_one, product_two):
     assert product_two + product_one == 2580000.0
