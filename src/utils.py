@@ -63,6 +63,7 @@ def read_products_from_json(file_path: str) -> List[Category]:
         logger.error(f"Ошибка парсинга JSON: {e}", e.doc, e.pos)
         return []
 
+
 #
 # if __name__ == "__main__":
 #     path_file = os.path.abspath(os.path.join("..", "data\\products.json"))
