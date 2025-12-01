@@ -9,7 +9,8 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "openpyxl (>=3.1.5,<4.0.0)",
-    "requests (>=2.32.5,<3.0.0)"
+    "requests (>=2.32.5,<3.0.0)",
+    "python-dotenv (>=1.2.1,<2.0.0)"
 ]
 
 
@@ -26,14 +27,9 @@ lint = [
 ]
 dev = [
     "pytest (>=9.0.0,<10.0.0)",
-    "pytest-cov (>=7.0.0,<8.0.0)"
+    "pytest-cov (>=7.0.0,<8.0.0)",
+    "flake8 (>=7.3.0,<8.0.0)"
 ]
-
-[tool.poetry.group.types.dependencies]
-pandas-stubs = "^2.3.2.250926"
-types-requests = "^2.32.4.20250913"
-
-
 
 [tool.black]
 # Максимальная длина строки
