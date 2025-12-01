@@ -30,3 +30,8 @@ def test_product_iterator(product_iterator):
 
     with pytest.raises(StopIteration):
         next(product_iterator)
+
+
+def test_category_add_product_invalid(category_one):
+    with pytest.raises(TypeError):
+        category_one.add_product("Not a product")
