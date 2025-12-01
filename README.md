@@ -30,7 +30,7 @@
 Код покрыт тестами Coverage report: 100%
 
 HTML-отчёт, который показывает, какие строки кода были покрыты тестами, а какие нет в 
-[(htmlcov/index.html)](https://github.com/lidiar8r-ops/home_oop/blob/feature/homework-14-3/htmlcov/index.html)
+[(htmlcov/index.html)](https://github.com/lidiar8r-ops/home_oop/blob/feature/homework-14-4/htmlcov/index.html)
 
 Для запуска тестов воспользуйтесь командой  ```poetry```
 
@@ -84,6 +84,23 @@ HTML-отчёт, который показывает, какие строки к
     - класс-метод *new_product*, который создаёт новый продукт или объединяет с существующим по имени 
     (складывает количество на складе; выбирает максимальную из двух цен)
 
+  
+* Smartphone(Product):
+``` класс Смартфон Smartphone. дочерний класс к Product, есть свойства Product и добавлены 
+    Args:
+       efficiency: производительность,
+       model: модель,
+       memory: объем встроенной памяти,
+       color: цвет.
+```
+
+* LawnGrass(Product):
+``` класс  Трава газонная LawnGrass. дочерний класс к Product, есть свойства Product и добавлены 
+    Args:
+        country: страна-производитель,
+        germination_period: срок прорастания,
+        color: цвет.
+```
 
 **Созадан модуль utils.py** , в котором создана функция read_products_from_json
 ```    
