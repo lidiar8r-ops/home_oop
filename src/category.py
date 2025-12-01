@@ -104,7 +104,7 @@ class ProductIterator:
         self.category = category
         self.index = 0
 
-    def __iter__(self) -> None:
+    def __iter__(self) -> Self:
         self.index = 0
         return self
 
