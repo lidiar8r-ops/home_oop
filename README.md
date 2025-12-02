@@ -27,7 +27,7 @@
  
 
 ## Тестирование
-Код покрыт тестами Coverage report: 100%
+Код покрыт тестами Coverage report: 100% 
 
 HTML-отчёт, который показывает, какие строки кода были покрыты тестами, а какие нет в 
 [(htmlcov/index.html)](https://github.com/lidiar8r-ops/home_oop/blob/feature/homework-14-4/htmlcov/index.html)
