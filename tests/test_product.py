@@ -1,5 +1,7 @@
 from unittest.mock import patch
 
+import pytest
+
 from src.product import Product
 
 
@@ -94,3 +96,39 @@ def test_price_decrease_accepted(capsys, product_two):
 
 def test_products_add(product_one, product_two):
     assert product_two + product_one == 2580000.0
+
+
+def test_product_smarthone(smartphone_one):
+    assert smartphone_one.name == "Samsung Galaxy S23 Ultra"
+    assert smartphone_one.description == "256GB, Серый цвет, 200MP камера"
+    assert smartphone_one.price == 180000.0
+    assert smartphone_one.quantity == 5
+    assert smartphone_one.efficiency == 95.5
+    assert smartphone_one.model == "S23 Ultra"
+    assert smartphone_one.memory == 256
+    assert smartphone_one.color == "Серый"
+
+
+def test_product_smarthone_add(smartphone_one, smartphone_two):
+    smartphone_sum = smartphone_one + smartphone_two
+    assert smartphone_sum == 2580000.0
+
+
+def test_product_grass(grass_one):
+    assert grass_one.name == "Газонная трава"
+    assert grass_one.description == "Элитная трава для газона"
+    assert grass_one.price == 500.0
+    assert grass_one.quantity == 20
+    assert grass_one.country == "Россия"
+    assert grass_one.germination_period == "7 дней"
+    assert grass_one.color == "Зеленый"
+
+
+def test_product_grass_add(grass_one, grass_two):
+    grass_sum = grass_one + grass_two
+    assert grass_sum == 16750.0
+
+
+def test_product_smarthone_add_invalid(smartphone_one, grass_one):
+    with pytest.raises(TypeError):
+        smartphone_one + grass_one
