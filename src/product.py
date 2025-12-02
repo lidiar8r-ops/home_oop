@@ -37,7 +37,10 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other: "Product") -> float:
-        return self.__price * self.quantity + other.__price * other.quantity
+        if type(other) == type(self):
+            return self.__price * self.quantity + other.__price * other.quantity
+        else:
+            raise TypeError("можно складывать товары только из одинаковых классов продуктов")
 
     @property
     def price(self) -> float:
@@ -117,3 +120,54 @@ class Product:
             price=find_product.price,
             quantity=find_product.quantity,
         )
+
+
+class Smartphone(Product):
+    """класс Смартфон. Помимо имеющихся свойств Product есть
+    Args:
+       efficiency: производительность,
+       model: модель,
+       memory: объем встроенной памяти,
+       color: цвет.
+    """
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: float,
+        model: str,
+        memory: int,
+        color: str,
+    ) -> None:
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    """класс Трава газонная. Помимо имеющихся свойств Product есть
+    Args:
+        country: страна-производитель,
+        germination_period: срок прорастания,
+        color: цвет.
+    """
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ) -> None:
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
