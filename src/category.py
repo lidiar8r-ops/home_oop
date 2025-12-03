@@ -107,7 +107,7 @@ class ProductIterator:
         self.index = 0
 
     # def __iter__(self) -> Self:
-    def __iter__(self) :
+    def __iter__(self):
         self.index = 0
         return self
 
