@@ -15,7 +15,7 @@ class Order(BaseCategory):
     cost: float
 
     def __init__(self, product: str, quantity: int, price: float):
-        """Создаёт экземпляр купленного  товара.
+        """Создаёт экземпляр купленного товара.
         Args:
             name (str): Название купленного товара. Должно быть непустым.
             quantity (int): Количество купленного товара. Должно быть ≥0
