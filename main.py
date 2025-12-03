@@ -53,7 +53,7 @@ if __name__ == '__main__':
     print(order1)
 
     try:
-        order2= Order("Iphone 15", 10, 15_000.0)
+        order2 = Order("Iphone 15", 10, 15_000.0)
     except TypeError:
         print("Возникла ошибка TypeError при добавлении другого продукта в заказ")
     else:

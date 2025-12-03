@@ -30,9 +30,6 @@ def test_product_new_product():
 def test_product_price(capsys, product_one):
     with pytest.raises(TypeError, match="Цена не должна быть нулевая или отрицательная"):
         Product('55" QLED 4K', "Фоновая подсветка", -133000.0, 3)
-    # Product('55" QLED 4K', "Фоновая подсветка", -133000.0, 3)
-    # message = capsys.readouterr()
-    # assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
 
     with pytest.raises(TypeError, match="Цена не должна быть нулевая или отрицательная"):
         Product.new_product(

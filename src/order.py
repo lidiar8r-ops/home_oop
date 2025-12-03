@@ -5,10 +5,9 @@ from src.product import Product
 
 class BaseCategory(ABC):
 
-    @abstractmethod
+    @abstractmethod # pragma: no cover
     def add_product(self, product: Product) -> None:
-        if not isinstance(product, Product):
-            raise TypeError("Можно складывать только объекты класса Product или его наследников")
+        pass
 
 class Order(BaseCategory):
     NAME_PRODUCT = None
@@ -36,7 +35,9 @@ class Order(BaseCategory):
 
 
     def add_product(self, product: Product) -> None:
-        super().add_product(product)
+        if not isinstance(product, Product):
+            raise TypeError("Можно складывать только объекты класса Product или его наследников")
+
         if not Order.NAME_PRODUCT or product.name in Order.NAME_PRODUCT:
             self.product = product.name
             self.quantity += product.quantity

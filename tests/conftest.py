@@ -112,3 +112,4 @@ def grass_two():
 @pytest.fixture()
 def order1():
     return Order("Samsung Galaxy S23 Ultra", 10, 180000.0 )
+
