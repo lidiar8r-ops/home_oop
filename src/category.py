@@ -68,8 +68,9 @@ class Category(BaseCategory):
         Args:
             product_data: Словарь с данными товара (name, price, description, quantity).
         """
-        if not isinstance(product, Product):
-            raise TypeError("Можно складывать только объекты класса Product или его наследников")
+        # if not isinstance(product, Product):
+        #     raise TypeError("Можно складывать только объекты класса Product или его наследников")
+        super().add_product(product)
 
         # Формируем словарь данных из объекта Product
         product_data: Dict[str, Any] = {

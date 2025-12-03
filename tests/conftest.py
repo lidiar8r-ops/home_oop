@@ -1,6 +1,7 @@
 import pytest
 
 from src.category import Category, ProductIterator
+from src.order import Order
 from src.product import LawnGrass, Product, Smartphone
 
 
@@ -107,3 +108,7 @@ def grass_one():
 @pytest.fixture()
 def grass_two():
     return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
+
+@pytest.fixture()
+def order1():
+    return Order("Samsung Galaxy S23 Ultra", 10, 180000.0 )

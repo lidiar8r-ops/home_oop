@@ -61,7 +61,7 @@ class BaseProduct(ABC):
             raise TypeError("можно складывать товары только из одинаковых классов продуктов")
 
     @classmethod
-    @abstractmethod
+    @abstractmethod  # pragma: no cover
     def new_product(cls, product: dict, products_list: list = []) -> Optional["Product"]:
         pass
 
