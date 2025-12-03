@@ -23,10 +23,10 @@ class BaseProduct(ABC):
         self.quantity = quantity
         if price < 0:
             # price = 0
-            print("Цена не должна быть нулевая или отрицательная")
-            self.__price = 0
-        else:
-            self.__price = price
+            raise TypeError("Цена не должна быть нулевая или отрицательная")
+            # self.__price = 0
+        # else:
+        self.__price = price
         print(repr(self))
 
     def __str__(self) -> str:
