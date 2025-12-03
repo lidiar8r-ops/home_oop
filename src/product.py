@@ -45,7 +45,8 @@ class BaseProduct(ABC):
             return
         elif price <= self.__price:
             if (
-                    input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
+                    input(
+                        "Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
                     == "y"
             ):
                 self.__price = price
@@ -59,6 +60,22 @@ class BaseProduct(ABC):
         else:
             raise TypeError("можно складывать товары только из одинаковых классов продуктов")
 
+    @classmethod
+    @abstractmethod
+    def new_product(cls, product: dict, products_list: list = []) -> Optional["Product"]:
+        pass
+
+
+
+class Product(BaseProduct, MixinPrint):
+    """
+    Представляет товар в ассортименте.
+    Атрибуты:
+        name (str): Название товара (например, «Смартфон Xiaomi 13»).
+        description (str): Подробное описание товара.
+        price (float): Цена за единицу в рублях (должно быть ≥ 0).
+        quantity (int): Количество единиц на складе (должно быть ≥ 0).
+    """
     @classmethod
     def new_product(cls, product: dict, products_list: list = []) -> Optional["Product"]:
         """
@@ -75,7 +92,6 @@ class BaseProduct(ABC):
         if product.get("price") is not None and product["price"] < 0:
             # product["price"] = 0
             raise TypeError("Цена не должна быть нулевая или отрицательная")
-
 
         if product.get("quantity") is not None and product["quantity"] < 0:
             # product["quantity"] = 0
@@ -116,18 +132,6 @@ class BaseProduct(ABC):
             price=find_product.price,
             quantity=find_product.quantity,
         )
-
-
-
-class Product(BaseProduct, MixinPrint):
-    """
-    Представляет товар в ассортименте.
-    Атрибуты:
-        name (str): Название товара (например, «Смартфон Xiaomi 13»).
-        description (str): Подробное описание товара.
-        price (float): Цена за единицу в рублях (должно быть ≥ 0).
-        quantity (int): Количество единиц на складе (должно быть ≥ 0).
-    """
 
 
 class Smartphone(Product):

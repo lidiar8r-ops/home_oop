@@ -1,4 +1,5 @@
 from src.category import Category
+from src.order import Order
 from src.product import Product
 
 if __name__ == '__main__':
@@ -43,3 +44,35 @@ if __name__ == '__main__':
 
     print(Category.category_count)
     print(Category.product_count)
+
+
+    print("="*20)
+
+    order1 = Order("Samsung Galaxy S23 Ultra", 10, 180000.0 )
+
+    print(order1)
+
+    try:
+        order2= Order("Iphone 15", 10, 15_000.0)
+    except TypeError:
+        print("Возникла ошибка TypeError при добавлении другого продукта в заказ")
+    else:
+        print("Не возникла ошибка TypeError при добавлении другого продукта в заказ")
+
+    order3 = Order("Samsung Galaxy S23 Ultra", 5, 20_000.0)
+    print(order3)
+
+    order1.add_product(product1)
+
+    print(order1)
+    try:
+        order1.add_product(product2)
+    except TypeError:
+        print("Возникла ошибка TypeError при добавлении другого продукта в заказ")
+    else:
+        print("Не возникла ошибка TypeError при добавлении другого продукта в заказ")
+
+
+
+
+

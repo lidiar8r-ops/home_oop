@@ -1,9 +1,10 @@
 from typing import Any, Dict, Self
 
+from src.order import BaseCategory
 from src.product import Product
 
 
-class Category:
+class Category(BaseCategory):
     """
     Представляет категорию товаров .
     Класс отслеживает:
@@ -82,8 +83,6 @@ class Category:
         Product.new_product(product_data, self.__products)
 
         # Если товар новый (не был в списке), увеличиваем счётчик
-        # if product not in self.__products:
-        # self.__products.append(added_product)
         Category.product_count = len(self.__products)
 
     def get_product_list(self) -> list[Product]:
