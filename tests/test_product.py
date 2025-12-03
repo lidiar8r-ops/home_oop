@@ -53,9 +53,10 @@ def test_product_price(capsys, product_one):
     # assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
 
     # with pytest.raises(TypeError, match="Цена не должна быть нулевая или отрицательная"):
-    #     product_one.price = -100
-    # message = capsys.readouterr()
-    # assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    product_one.price = -100
+    message = capsys.readouterr()
+    assert message.out.strip() == ("Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
+                                   "180000.0, 5)'\n"'Цена не должна быть нулевая или отрицательная')
     assert product_one.price == 180000.0
     product_one.price = 180001
     assert product_one.price == 180001
