@@ -1,4 +1,4 @@
-from typing import Any, Dict, Self
+# from typing import Any, Dict, Self
 
 from src.product import Product
 
@@ -27,7 +27,8 @@ class Category:
     category_count: int = 0
     product_count: int = 0
 
-    def __init__(self, name: str, description: str, products: list[Product]) -> None:
+    # def __init__(self, name: str, description: str, products: list[Product]) -> None:
+    def __init__(self, name: str, description: str, products: list) -> None:
         """
         Инициализирует категорию с заданным названием, описанием и списком товаров.
         При создании экземпляра:
@@ -94,7 +95,8 @@ class Category:
         # self.__products.append(added_product)
         Category.product_count = len(self.__products)
 
-    def get_product_list(self) -> list[Product]:
+    # def get_product_list(self) -> list[Product]:
+    def get_product_list(self) -> list:
         """Возвращает список объектов Product для внутренней работы."""
         return self.__products
 
@@ -104,7 +106,8 @@ class ProductIterator:
         self.category = category
         self.index = 0
 
-    def __iter__(self) -> Self:
+    # def __iter__(self) -> Self:
+    def __iter__(self) :
         self.index = 0
         return self
 

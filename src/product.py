@@ -1,46 +1,40 @@
+from abc import ABC, abstractmethod
 from typing import Optional
 
+from src.mixins import MixinPrint
 
-class Product:
-    """
-    Представляет товар в ассортименте.
-    Атрибуты:
-        name (str): Название товара (например, «Смартфон Xiaomi 13»).
-        description (str): Подробное описание товара.
-        price (float): Цена за единицу в рублях (должно быть ≥ 0).
-        quantity (int): Количество единиц на складе (должно быть ≥ 0).
-    """
 
+class BaseProduct(ABC):
     name: str
     description: str
     quantity: int
     __price: float
 
-    def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
+    def __init__(self, name: str, description: str, price: float, quantity: int):
         """Создаёт экземпляр товара.
-        Args:
-            name (str): Название товара. Должно быть непустым.
-            description (str): Описание товара.
-            price (float): Цена за единицу. Должно быть ≥0.
-            quantity (int): Количество на складе. Должно быть ≥0
-        """
+               Args:
+                   name (str): Название товара. Должно быть непустым.
+                   description (str): Описание товара.
+                   price (float): Цена за единицу. Должно быть ≥0.
+                   quantity (int): Количество на складе. Должно быть ≥0
+               """
         self.name = name
         self.description = description
+        self.quantity = quantity
         if price < 0:
             # price = 0
             print("Цена не должна быть нулевая или отрицательная")
-            return
-        self.__price = price
-        self.quantity = quantity
+            self.__price = 0
+        else:
+            self.__price = price
+        print(repr(self))
 
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
-    def __add__(self, other: "Product") -> float:
-        if type(other) == type(self):
-            return self.__price * self.quantity + other.__price * other.quantity
-        else:
-            raise TypeError("можно складывать товары только из одинаковых классов продуктов")
+    @abstractmethod
+    def __add__(self, other):
+        pass
 
     @property
     def price(self) -> float:
@@ -55,13 +49,30 @@ class Product:
             return
         elif price <= self.__price:
             if (
-                input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
-                == "y"
+                    input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
+                    == "y"
             ):
                 self.__price = price
         else:
             self.__price = price
-        # return self.__price
+
+
+    def __add__(self, other: "Product") -> float:
+        if type(other) == type(self):
+            return self.__price * self.quantity + other.__price * other.quantity
+        else:
+            raise TypeError("можно складывать товары только из одинаковых классов продуктов")
+
+
+class Product(BaseProduct, MixinPrint):
+    """
+    Представляет товар в ассортименте.
+    Атрибуты:
+        name (str): Название товара (например, «Смартфон Xiaomi 13»).
+        description (str): Подробное описание товара.
+        price (float): Цена за единицу в рублях (должно быть ≥ 0).
+        quantity (int): Количество единиц на складе (должно быть ≥ 0).
+    """
 
     @classmethod
     def new_product(cls, product: dict, products_list: list = []) -> Optional["Product"]:
