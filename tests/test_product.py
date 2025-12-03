@@ -43,8 +43,11 @@ def test_product_price(capsys, product_one):
 
     product_one.price = -100
     message = capsys.readouterr()
-    assert message.out.strip() == ("Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
-                                   "180000.0, 5)'\n"'Цена не должна быть нулевая или отрицательная')
+    assert message.out.strip() == (
+        "Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
+        "180000.0, 5)\n"
+        "Цена не должна быть нулевая или отрицательная"
+    )
     assert product_one.price == 180000.0
     product_one.price = 180001
     assert product_one.price == 180001
@@ -61,6 +64,7 @@ def test_product_quantity():
             }
         )
 
+
 def test_product_addition(capsys, category_one):
     Product.new_product(
         {
@@ -72,14 +76,14 @@ def test_product_addition(capsys, category_one):
         category_one.get_product_list(),
     )
     message = capsys.readouterr()
-    assert (
-        message.out.strip() == ("Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
-                                 "180000.0, 5)'\n"
-                                 "Product('Iphone 15', '512GB, Gray space', 210000.0, 8)'\n"
-                                 'Товар Samsung Galaxy S23 Ultra уже существует. Объединяем данные...\n'
-                                 'Цена обновлена до 190000.0 руб.\n'
-                                 "Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
-                                 "190000.0, 10)'")
+    assert message.out.strip() == (
+        "Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
+        "180000.0, 5)\n"
+        "Product('Iphone 15', '512GB, Gray space', 210000.0, 8)\n"
+        "Товар Samsung Galaxy S23 Ultra уже существует. Объединяем данные...\n"
+        "Цена обновлена до 190000.0 руб.\n"
+        "Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
+        "190000.0, 10)"
     )
 
 

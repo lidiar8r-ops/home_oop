@@ -1,6 +1,9 @@
 class MixinPrint:
+    def __repr__(self) -> str:
+        # Получаем атрибуты с проверкой на существование
+        name = getattr(self, "name", "N/A")
+        description = getattr(self, "description", "N/A")
+        price = getattr(self, "price", "N/A")
+        quantity = getattr(self, "quantity", "N/A")
 
-    def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', '{self.description}', {self.price}, {self.quantity})'"
-        # return f'Класс {self.__class__.__name__}, Название категории: {self.name}, Описание товара: {self.description}, ' \
-        #        f'Цена за единицу: {self.price}, Количество на складе: {self.quantity}!!!'
+        return f"{self.__class__.__name__}('{name}', '{description}', {price}, {quantity})"

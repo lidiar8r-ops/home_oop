@@ -5,9 +5,10 @@ from src.product import Product
 
 class BaseCategory(ABC):
 
-    @abstractmethod # pragma: no cover
+    @abstractmethod  # pragma: no cover
     def add_product(self, product: Product) -> None:
         pass
+
 
 class Order(BaseCategory):
     NAME_PRODUCT = None
@@ -15,11 +16,11 @@ class Order(BaseCategory):
 
     def __init__(self, product: str, quantity: int, price: float):
         """Создаёт экземпляр купленного  товара.
-                       Args:
-                           name (str): Название купленного товара. Должно быть непустым.
-                           quantity (int): Количество купленного товара. Должно быть ≥0
-                           price (float): Цена товара
-                       """
+        Args:
+            name (str): Название купленного товара. Должно быть непустым.
+            quantity (int): Количество купленного товара. Должно быть ≥0
+            price (float): Цена товара
+        """
         if not Order.NAME_PRODUCT or product in Order.NAME_PRODUCT:
             self.product = product
             self.quantity = quantity
@@ -29,10 +30,11 @@ class Order(BaseCategory):
         else:
             raise TypeError("В заказе может быть указан только один товар")
 
-    def __str__(self):
-        return (f"заказ товара {self.product} в количестве {self.quantity} шт., итоговая стоимость = "
-                f"{self.price * self.quantity}")
-
+    def __str__(self) -> str:
+        return (
+            f"заказ товара {self.product} в количестве {self.quantity} шт., итоговая стоимость = "
+            f"{self.price * self.quantity}"
+        )
 
     def add_product(self, product: Product) -> None:
         if not isinstance(product, Product):

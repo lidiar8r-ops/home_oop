@@ -12,12 +12,12 @@ class BaseProduct(ABC):
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
         """Создаёт экземпляр товара.
-               Args:
-                   name (str): Название товара. Должно быть непустым.
-                   description (str): Описание товара.
-                   price (float): Цена за единицу. Должно быть ≥0.
-                   quantity (int): Количество на складе. Должно быть ≥0
-               """
+        Args:
+            name (str): Название товара. Должно быть непустым.
+            description (str): Описание товара.
+            price (float): Цена за единицу. Должно быть ≥0.
+            quantity (int): Количество на складе. Должно быть ≥0
+        """
         self.name = name
         self.description = description
         self.quantity = quantity
@@ -45,17 +45,15 @@ class BaseProduct(ABC):
             return
         elif price <= self.__price:
             if (
-                    input(
-                        "Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
-                    == "y"
+                input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
+                == "y"
             ):
                 self.__price = price
         else:
             self.__price = price
 
-
     def __add__(self, other: "Product") -> float:
-        if type(other) == type(self):
+        if type(other) is type(self):
             return self.__price * self.quantity + other.__price * other.quantity
         else:
             raise TypeError("можно складывать товары только из одинаковых классов продуктов")
@@ -64,7 +62,6 @@ class BaseProduct(ABC):
     @abstractmethod  # pragma: no cover
     def new_product(cls, product: dict, products_list: list = []) -> Optional["Product"]:
         pass
-
 
 
 class Product(BaseProduct, MixinPrint):
@@ -76,6 +73,7 @@ class Product(BaseProduct, MixinPrint):
         price (float): Цена за единицу в рублях (должно быть ≥ 0).
         quantity (int): Количество единиц на складе (должно быть ≥ 0).
     """
+
     @classmethod
     def new_product(cls, product: dict, products_list: list = []) -> Optional["Product"]:
         """

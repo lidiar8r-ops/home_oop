@@ -109,7 +109,12 @@ def grass_one():
 def grass_two():
     return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
 
+
 @pytest.fixture()
 def order1():
-    return Order("Samsung Galaxy S23 Ultra", 10, 180000.0 )
+    return Order("Samsung Galaxy S23 Ultra", 10, 180000.0)
 
+
+@pytest.fixture()
+def order2():
+    return Order("Samsung Galaxy S23 Ultra", 10, 180000.0)
