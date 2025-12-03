@@ -12,12 +12,12 @@ class BaseProduct(ABC):
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
         """Создаёт экземпляр товара.
-        Args:
-            name (str): Название товара. Должно быть непустым.
-            description (str): Описание товара.
-            price (float): Цена за единицу. Должно быть ≥0.
-            quantity (int): Количество на складе. Должно быть ≥0
-        """
+               Args:
+                   name (str): Название товара. Должно быть непустым.
+                   description (str): Описание товара.
+                   price (float): Цена за единицу. Должно быть ≥0.
+                   quantity (int): Количество на складе. Должно быть ≥0
+               """
         self.name = name
         self.description = description
         self.quantity = quantity
@@ -45,12 +45,13 @@ class BaseProduct(ABC):
             return
         elif price <= self.__price:
             if (
-                input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
-                == "y"
+                    input("Цена товара понижается. При согласии понизить цену введите y(значит yes) или n (значит no)?")
+                    == "y"
             ):
                 self.__price = price
         else:
             self.__price = price
+
 
     def __add__(self, other: "Product") -> float:
         if type(other) == type(self):
@@ -72,13 +73,13 @@ class BaseProduct(ABC):
 
         # Валидация и коррекция данных
         if product.get("price") is not None and product["price"] < 0:
-            product["price"] = 0
-            print("Цена не должна быть нулевая или отрицательная")
-            return None
+            # product["price"] = 0
+            raise TypeError("Цена не должна быть нулевая или отрицательная")
+
 
         if product.get("quantity") is not None and product["quantity"] < 0:
-            product["quantity"] = 0
-            print("Количество товара не должно быть отрицательным")
+            # product["quantity"] = 0
+            raise TypeError("Количество товара не должно быть отрицательным")
 
         # проверка наличия такого же товара схожего по имени
         # Если список товаров не передан — создаём новый товар без проверок
@@ -115,6 +116,7 @@ class BaseProduct(ABC):
             price=find_product.price,
             quantity=find_product.quantity,
         )
+
 
 
 class Product(BaseProduct, MixinPrint):
