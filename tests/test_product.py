@@ -43,16 +43,7 @@ def test_product_price(capsys, product_one):
                 "quantity": 5,
             }
         )
-    # message = capsys.readouterr()
-    # assert message.out.strip() == ("Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
-    #                                "180000.0, 5)'\n")+'Цена не должна быть нулевая или отрицательная'
 
-    # with pytest.raises(TypeError, match="Цена не должна быть нулевая или отрицательная"):
-    #     product_one.price = 0
-    # message = capsys.readouterr()
-    # assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
-
-    # with pytest.raises(TypeError, match="Цена не должна быть нулевая или отрицательная"):
     product_one.price = -100
     message = capsys.readouterr()
     assert message.out.strip() == ("Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
@@ -72,11 +63,6 @@ def test_product_quantity():
                 "quantity": -5,
             }
         )
-    # message = capsys.readouterr()
-    # assert message.out.strip() == ('Количество товара не должно быть отрицательным\n'
-    #                                "Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', "
-    #                                "180000.0, 0)'")
-
 
 def test_product_addition(capsys, category_one):
     Product.new_product(
