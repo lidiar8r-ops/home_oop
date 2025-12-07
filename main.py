@@ -1,4 +1,5 @@
 from src.category import Category
+from src.myexception import MyException
 from src.order import Order
 from src.product import Product
 
@@ -20,9 +21,16 @@ if __name__ == '__main__':
 
     print(category1.middle_price())
 
-    category_empty = Category("Пустая категория", "Категория без продуктов", [])
-    print(category_empty.middle_price())
+    try:
+        category_empty = Category("Пустая категория", "Категория без продуктов", [])
+    except MyException as e:
+        print(e)
+    else:
+        print(category_empty.middle_price())
 
-    order1 = Order("Samsung Galaxy S23 Ultra", 0, 180000.0)
-
-    print(order1)
+    try:
+        order1 = Order("Samsung Galaxy S23 Ultra", 0, 180000.0)
+    except MyException as e:
+        print(e)
+    else:
+        print(order1)

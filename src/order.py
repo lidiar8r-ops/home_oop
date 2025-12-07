@@ -24,11 +24,9 @@ class Order(BaseCategory):
         """
         if not Order.NAME_PRODUCT or product in Order.NAME_PRODUCT:
             self.product = product
-            try:
-                if quantity == 0:
-                    raise MyException("Товар с нулевым количеством не может быть добавлен")
-            except MyException as e:
-                print(e)
+
+            if quantity == 0:
+                raise MyException("Товар с нулевым количеством не может быть добавлен")
 
             self.quantity = quantity
             self.price = price
