@@ -1,9 +1,10 @@
 from typing import Any, Dict, Self
 
+from src.order import BaseCategory
 from src.product import Product
 
 
-class Category:
+class Category(BaseCategory):
     """
     Представляет категорию товаров .
     Класс отслеживает:
@@ -28,6 +29,7 @@ class Category:
     product_count: int = 0
 
     def __init__(self, name: str, description: str, products: list[Product]) -> None:
+        # def __init__(self, name: str, description: str, products: list) -> None:
         """
         Инициализирует категорию с заданным названием, описанием и списком товаров.
         При создании экземпляра:
@@ -49,15 +51,6 @@ class Category:
     def __str__(self) -> str:
         count_products = sum(p.quantity for p in self.__products)
         return f"{self.name}, количество продуктов: {count_products} шт."
-
-        # goods_count = 0
-        # for product in self.__products:
-        #     goods_count += product.quantity
-        # return f"{self.name}, количество продуктов: {goods_count} шт."
-        #
-        # for product in self.__products:
-        #     str_products += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-        # return str_products  # Название продукта, 80 руб. Остаток: 15 шт.
 
     @property
     def products(self) -> str:
@@ -90,11 +83,10 @@ class Category:
         Product.new_product(product_data, self.__products)
 
         # Если товар новый (не был в списке), увеличиваем счётчик
-        # if product not in self.__products:
-        # self.__products.append(added_product)
         Category.product_count = len(self.__products)
 
     def get_product_list(self) -> list[Product]:
+        # def get_product_list(self) -> list:
         """Возвращает список объектов Product для внутренней работы."""
         return self.__products
 
@@ -105,6 +97,7 @@ class ProductIterator:
         self.index = 0
 
     def __iter__(self) -> Self:
+        # def __iter__(self):
         self.index = 0
         return self
 
