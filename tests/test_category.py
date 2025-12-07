@@ -51,7 +51,7 @@ def test_category_midle_price(category_one):
 
 
 def test_category_midle_price_ZeroDivisionError():
-
+    # никогда не случиться данная ситуация, тк идет проверка на добавление не пустого товара
     with pytest.raises(MyException):
         category_empty = Category("Пустая категория", "Категория без продуктов", [])
         category_empty.middle_price()
