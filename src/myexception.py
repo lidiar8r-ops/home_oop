@@ -1,3 +1,3 @@
 class MyException(Exception):
-    def __init__(self, messg):
-        self.message = messg
+    def __init__(self, messeg: str):
+        self.message = messeg

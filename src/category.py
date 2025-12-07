@@ -100,12 +100,13 @@ class Category(BaseCategory):
         return self.__products
 
     # @classmethod
-    def middle_price(self) -> list[Product]:
+    def middle_price(self) -> float:
         product_cost = sum(product.price for product in self.get_product_list())
         try:
             return round(product_cost / Category.product_count, 2)
         except ZeroDivisionError:
             return 0.0
+
 
 class ProductIterator:
     def __init__(self, category: Category):
