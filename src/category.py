@@ -71,14 +71,14 @@ class Category(BaseCategory):
         Args:
             product_data: Словарь с данными товара (name, price, description, quantity).
         """
+        if not isinstance(product, Product):
+            raise TypeError("Можно складывать только объекты класса Product или его наследников")
+
         try:
             if product.quantity == 0:
                 raise MyException("Товар с нулевым количеством не может быть добавлен")
         except MyException as e:
             print(e)
-
-        if not isinstance(product, Product):
-            raise TypeError("Можно складывать только объекты класса Product или его наследников")
 
         # Формируем словарь данных из объекта Product
         product_data: Dict[str, Any] = {
