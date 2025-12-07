@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from src.myexception import MyException
 from src.product import Product
 
 
@@ -23,6 +24,12 @@ class Order(BaseCategory):
         """
         if not Order.NAME_PRODUCT or product in Order.NAME_PRODUCT:
             self.product = product
+            try:
+                if quantity == 0:
+                    raise MyException("Товар с нулевым количеством не может быть добавлен")
+            except MyException as e:
+                print(e)
+
             self.quantity = quantity
             self.price = price
             Order.NAME_PRODUCT = product

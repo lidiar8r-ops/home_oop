@@ -1,4 +1,5 @@
 from src.category import Category
+from src.order import Order
 from src.product import Product
 
 
@@ -21,3 +22,7 @@ if __name__ == '__main__':
 
     category_empty = Category("Пустая категория", "Категория без продуктов", [])
     print(category_empty.middle_price())
+
+    order1 = Order("Samsung Galaxy S23 Ultra", 0, 180000.0)
+
+    print(order1)

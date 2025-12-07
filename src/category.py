@@ -1,5 +1,6 @@
 from typing import Any, Dict, Self
 
+from src.myexception import MyException
 from src.order import BaseCategory
 from src.product import Product
 
@@ -44,6 +45,11 @@ class Category(BaseCategory):
         self.name = name
         self.description = description
         self.__products = products.copy() if products else []
+        try:
+            if len(products) == 0:
+                raise MyException("Товар с нулевым количеством не может быть добавлен")
+        except MyException as e:
+            print(e)
         # Обновляем статические счётчики
         Category.category_count += 1
         Category.product_count += len(products)
@@ -68,6 +74,12 @@ class Category(BaseCategory):
         Args:
             product_data: Словарь с данными товара (name, price, description, quantity).
         """
+        try:
+            if product.quantity == 0:
+                raise MyException("Товар с нулевым количеством не может быть добавлен")
+        except MyException as e:
+            print(e)
+
         if not isinstance(product, Product):
             raise TypeError("Можно складывать только объекты класса Product или его наследников")
 
