@@ -2,6 +2,7 @@ import pytest
 
 from src.category import Category
 from src.myexception import MyException
+from src.product import Product
 
 
 def test_category(category_one, product_two, product_three):
@@ -43,3 +44,15 @@ def test_category_add_product_invalid(category_one):
 def test_category_add_empty_product():
     with pytest.raises(MyException):
         Category("Пустая категория", "Категория без продуктов", [])
+
+
+def test_category_midle_price(category_one):
+    assert category_one.middle_price() == 35454.55
+
+
+def test_category_midle_price_ZeroDivisionError():
+
+    with pytest.raises(MyException):
+        category_empty = Category("Пустая категория", "Категория без продуктов", [])
+        category_empty.middle_price()
+
