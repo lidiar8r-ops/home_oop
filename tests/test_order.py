@@ -26,4 +26,4 @@ def test_order_add_other_product(order1, product_two) -> None:
 
 def test_order_add_empty_product():
     with pytest.raises(MyException):
-        order1 = Order("Samsung Galaxy S23 Ultra", 0, 180000.0)
+        Order("Samsung Galaxy S23 Ultra", 0, 180000.0)

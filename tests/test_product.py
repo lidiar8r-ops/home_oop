@@ -2,8 +2,6 @@ from unittest.mock import patch
 
 import pytest
 
-from src.category import Category
-from src.myexception import MyException
 from src.product import Product
 
 
@@ -135,6 +133,7 @@ def test_product_grass_add(grass_one, grass_two):
 def test_product_smarthone_add_invalid(smartphone_one, grass_one):
     with pytest.raises(TypeError):
         smartphone_one + grass_one
+
 
 def test_product_add_empty():
     with pytest.raises(ValueError):
