@@ -45,11 +45,8 @@ class Category(BaseCategory):
         self.name = name
         self.description = description
         self.__products = products.copy() if products else []
-        try:
-            if len(products) == 0:
-                raise MyException("Товар с нулевым количеством не может быть добавлен")
-        except MyException as e:
-            print(e)
+        if len(products) == 0:
+            raise MyException("Товар с нулевым количеством не может быть добавлен")
         # Обновляем статические счётчики
         Category.category_count += 1
         Category.product_count += len(products)
