@@ -1,5 +1,6 @@
 import pytest
 
+from src.myexception import MyException
 from src.order import Order
 
 
@@ -21,3 +22,8 @@ def test_order_add_other_product(order1, product_two) -> None:
 
     with pytest.raises(TypeError, match="В заказе может быть указан только один товар"):
         order1 = Order("Iphone 15", 10, 15_000.0)
+
+
+def test_order_add_empty_product():
+    with pytest.raises(MyException):
+        Order("Samsung Galaxy S23 Ultra", 0, 180000.0)

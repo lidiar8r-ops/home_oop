@@ -1,5 +1,8 @@
 import pytest
 
+from src.category import Category
+from src.myexception import MyException
+
 
 def test_category(category_one, product_two, product_three):
     assert category_one.name == "Смартфоны"
@@ -35,3 +38,19 @@ def test_product_iterator(product_iterator):
 def test_category_add_product_invalid(category_one):
     with pytest.raises(TypeError):
         category_one.add_product("Not a product")
+
+
+def test_category_add_empty_product():
+    with pytest.raises(MyException):
+        Category("Пустая категория", "Категория без продуктов", [])
+
+
+def test_category_midle_price(category_one):
+    assert category_one.middle_price() == 35454.55
+
+
+def test_category_midle_price_ZeroDivisionError():
+    # никогда не случиться данная ситуация, тк идет проверка на добавление не пустого товара
+    with pytest.raises(MyException):
+        category_empty = Category("Пустая категория", "Категория без продуктов", [])
+        category_empty.middle_price()

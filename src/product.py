@@ -20,12 +20,14 @@ class BaseProduct(ABC):
         """
         self.name = name
         self.description = description
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+
         self.quantity = quantity
         if price < 0:
             # price = 0
             raise TypeError("Цена не должна быть нулевая или отрицательная")
-            # self.__price = 0
-        # else:
+
         self.__price = price
         print(repr(self))
 

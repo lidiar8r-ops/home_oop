@@ -1,5 +1,6 @@
 from typing import Any, Dict, Self
 
+from src.myexception import MyException
 from src.order import BaseCategory
 from src.product import Product
 
@@ -44,6 +45,8 @@ class Category(BaseCategory):
         self.name = name
         self.description = description
         self.__products = products.copy() if products else []
+        if len(products) == 0:
+            raise MyException("Товар с нулевым количеством не может быть добавлен")
         # Обновляем статические счётчики
         Category.category_count += 1
         Category.product_count += len(products)
@@ -89,6 +92,14 @@ class Category(BaseCategory):
         # def get_product_list(self) -> list:
         """Возвращает список объектов Product для внутренней работы."""
         return self.__products
+
+    # @classmethod
+    def middle_price(self) -> float:
+        product_cost = sum(product.price for product in self.get_product_list())
+        try:
+            return round(product_cost / Category.product_count, 2)
+        except ZeroDivisionError:
+            return 0.0
 
 
 class ProductIterator:
